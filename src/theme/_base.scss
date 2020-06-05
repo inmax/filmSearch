@@ -1,0 +1,205 @@
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/*Mixins*/
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@mixin rem-fallback($property, $values...) {
+  $max: length($values);
+  $pxValues: "";
+  $remValues: "";
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $pxValues: #{$pxValues + $value * 10}px;
+
+    @if $i < $max {
+      $pxValues: #{$pxValues + " "};
+    }
+  }
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $remValues: #{$remValues + $value}rem;
+
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  }
+
+  #{$property}: $pxValues;
+  #{$property}: $remValues;
+}
+body {
+  color: $textBody-color;
+}
+
+/*==============================================
+ELEMENTS
+================================================ */
+
+h1 {
+  font-family: $font-mainTitle;
+  @include rem-fallback(font-size, 4);
+  @include rem-fallback(margin-bottom, 7);
+  margin-top: 0;
+  line-height: 1.4em;
+  color: $textNegative-color;
+  color:$primary-color;
+  text-align: left;
+}
+@media only screen and (min-width: 960px) {
+  h1 {
+    @include rem-fallback(font-size, 5.8);
+    text-align: left;
+  }
+}
+
+h2 {
+  font-family: $font-secondaryTitle;
+  @include rem-fallback(font-size, 2.6);
+  font-weight: normal;
+  padding-bottom: 0.5em;
+  margin-bottom: 0.666em;
+  margin-top: -12px;
+  text-align: left;
+  line-height: 1.4em;
+  color: $textNegative-color;
+  text-align: center;
+  @media only screen and (min-width: 992px) {
+    text-align: left;
+    @include rem-fallback(font-size, 3.6);
+  }
+}
+
+h3 {
+  font-family: $font-destacado;
+  @include rem-fallback(font-size, 2);
+  font-weight: normal;
+  margin-bottom: 0.666em;
+  line-height: 1.2em;
+  color: $textNegative-color;
+}
+@media only screen and (min-width: 960px) {
+  h3 {
+    @include rem-fallback(font-size, 2.4);
+    text-align: left;
+  }
+}
+h4 {
+  font-family: $font-destacado;
+  color: $textNegative-color;
+  @include rem-fallback(font-size, 1.5);
+  border-bottom: 1px solid #e0e0e0;
+  font-weight: normal;
+}
+
+hr {
+  margin: 0;
+  padding: 0;
+  border-bottom: solid 1px rgba(144, 144, 144, 0.25);
+  height: 0;
+}
+
+p {
+  font-family: $font-body;
+  @include rem-fallback(font-size, 1.6);
+  line-height: 1.5;
+  color: $textBody-color;
+  letter-spacing: 0.02em;
+  margin-top: 0;
+  text-align: left;
+  @include rem-fallback(margin-bottom, 2.5);
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+li {
+  font-family: $font-body;
+  @include rem-fallback(font-size, 1.6);
+  line-height: 1.5em;
+  color: $textBody-color;
+  margin-top: 0;
+  margin-bottom: 1em;
+  list-style: none;
+}
+
+strong {
+  font-family: $font-destacado;
+}
+
+a {
+  font-family: $fontLink;
+  @include rem-fallback(font-size, 1.8);
+  line-height: 1.5em;
+  color: $link-color;
+  text-decoration: none;
+  transition: color 100ms, background-color 100ms;
+  cursor: pointer;
+  &:hover {
+    color: $linkHover-color;
+    text-decoration: underline;
+  }
+  &:visited {
+    color: $linkVisited-color;
+  }
+  &.link--colorBody {
+    color: $textBody-color;
+  }
+}
+@media only screen and (min-width: 960px) {
+  a {
+    @include rem-fallback(font-size, 2.5);
+    line-height: 1.44em;
+    text-align: left;
+  }
+}
+
+figure {
+  margin: 2.4em 0;
+  padding: 0;
+  img {
+    margin: 0 auto;
+  }
+  &:last-child {
+    img {
+      padding-right: 0;
+    }
+  }
+  &:first-child {
+    img {
+      padding-left: 0;
+    }
+  }
+}
+figcaption {
+  @include rem-fallback(font-size, 2);
+  line-height: 1.4em;
+  text-align: center;
+  width: auto;
+  @include rem-fallback(margin-bottom, 1.8);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+blockquote {
+  @include rem-fallback(font-size, 3.2);
+  line-height: 1.25em;
+  color: $textBody-color;
+}
+
+ul {
+  padding-left: 0;
+}

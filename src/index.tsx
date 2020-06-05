@@ -1,7 +1,10 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { App } from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import 'normalize.css'; 
+import './theme/main.scss';
+
 ReactDOM.render(
-  <App userName="Beveloper" lang="TypeScript" />,
+  <App/>,
   document.getElementById("output")
 );

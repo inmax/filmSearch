@@ -1,11 +1,16 @@
-import * as React from "react";
+import React from "react";
+import Home from "./pages/Home";
+// import ItemFilm from "components/ItemFilm"
 import "./app.scss";
-export interface HelloWorldProps {
-  userName: string;
-  lang: string;
+
+// Written as a function declaration
+function App() {
+  return (
+    <>
+      <h1>FilmSearch</h1>
+      <Home/>
+       {/* <ItemFilm/> */}
+
+    </>)
 }
-export const App = (props: HelloWorldProps) => (
-  <h1 className="lolo">
-    Hi {props.userName} from Rt! Welcme to {props.lang}!
-  </h1>
-);
+export default App;

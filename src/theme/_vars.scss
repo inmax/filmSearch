@@ -1,0 +1,32 @@
+/*VARIABLES*/
+
+
+/*Color*/
+$primary-color:rgba(253,187,45,1);
+$secondary-color:rgba(255,255,255,0.5);
+$bg-color: rgb(39,39,39);
+$textBody-color: rgb(179,179,179);
+$textNegative-color: rgb(255,255,255);
+
+$bg-size: radial-gradient(circle, $primary-color 0%, rgba(33,231,170,1) 78%);
+
+$bg-gradient: radial-gradient(circle, rgba(252,176,69,1) 0%, rgba(89,59,109,1) 45%, rgba(44,25,35,1) 78%);
+
+$colorHover: rgb(23, 34, 39);
+$colorVisited: rgb(87,34,159);
+
+$link-color:rgb(185,185,185);
+$linkVisited-color: rgb(136,136,129);
+$linkHover-color: rgb(136,136,129);
+
+
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,900;1,900&display=swap');
+
+$font-body: 'Open Sans','Helvetica','Arial',sans-serif;
+$font-destacado: 'Alegreya','Open Sans','Helvetica','Arial',sans-serif;
+$font-mainTitle: 'Alegreya','Helvetica','Arial',sans-serif;;
+$font-secondaryTitle: 'Alegreya','Open Sans','Helvetica','Arial',sans-serif;
+ 
+$fontLink:'Open Sans','Helvetica','Arial',sans-serif;

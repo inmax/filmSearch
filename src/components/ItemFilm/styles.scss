@@ -1,0 +1,12 @@
+@import "./../../theme/vars";
+
+.item-film{
+    position: relative;
+    display: block;
+    max-width: 460px;
+    border: 1px solid black;
+    padding:16px;
+    margin: 32px;
+    background-color: $bg-color;
+    border-radius: 10px;
+}
