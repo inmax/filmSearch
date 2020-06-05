@@ -1,6 +1,8 @@
 import React from "react";
 import "./styles.scss";
+import Button from 'react-bootstrap/Button';
 //import { Link } from 'react-router-dom';
+import { GrFavorite} from 'react-icons/gr';
 import { Film } from "./../../models/film"
 
 interface PropsItemFilms {
@@ -26,7 +28,8 @@ function ItemFilm({ film, addFav }: PropsItemFilms) {
         </p>
       </div>
       <footer>
-        <div onClick={addFav}>Favorito</div>
+        <div >Favorito</div>
+        <Button onClick={addFav} variant="primary">Añadir a tu lista <GrFavorite /></Button>
       </footer>
     </article>
   )
