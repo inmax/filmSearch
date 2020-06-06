@@ -3,16 +3,16 @@ import "./styles.scss";
 import Button from 'react-bootstrap/Button';
 //import { Link } from 'react-router-dom';
 import { GrFavorite} from 'react-icons/gr';
-import { Film } from "./../../models/film"
+import { Film } from "./../../models/film";
 
 interface PropsItemFilms {
   film: Film
   addFav: () => string
 }
 
-function ItemFilm({ film, addFav }: PropsItemFilms) {
+function ItemFilm({ film, addFav }: PropsItemFilms):JSX.Element {
   return (
-    <article className={"item-film"}>
+    <article className="item-film">
       {/* <Link></Link> */}
       <header>
         <h4>{film.title}</h4>
@@ -22,13 +22,12 @@ function ItemFilm({ film, addFav }: PropsItemFilms) {
       <figure>
         <img src={film.poster} title={film.title} />
       </figure>
-      <div className="excerpt">
+      <div className="item-film__excerpt">
         <p>
           {film.plot}
         </p>
       </div>
-      <footer>
-        <div >Favorito</div>
+      <footer className="item-film__footer">
         <Button onClick={addFav} variant="primary">Añadir a tu lista <GrFavorite /></Button>
       </footer>
     </article>

@@ -37,8 +37,10 @@
   #{$property}: $pxValues;
   #{$property}: $remValues;
 }
+
 body {
   color: $textBody-color;
+  font-size: 10px;
 }
 
 /*==============================================
@@ -47,24 +49,24 @@ ELEMENTS
 
 h1 {
   font-family: $font-mainTitle;
-  @include rem-fallback(font-size, 4);
-  @include rem-fallback(margin-bottom, 7);
+  font-size: 40px;
+  margin-bottom: 70px;
   margin-top: 0;
   line-height: 1.4em;
   color: $textNegative-color;
-  color:$primary-color;
+  color: $primary-color;
   text-align: left;
 }
 @media only screen and (min-width: 960px) {
   h1 {
-    @include rem-fallback(font-size, 5.8);
+    font-size: 58px;
     text-align: left;
   }
 }
 
 h2 {
   font-family: $font-secondaryTitle;
-  @include rem-fallback(font-size, 2.6);
+  font-size: 26px;
   font-weight: normal;
   padding-bottom: 0.5em;
   margin-bottom: 0.666em;
@@ -75,13 +77,13 @@ h2 {
   text-align: center;
   @media only screen and (min-width: 992px) {
     text-align: left;
-    @include rem-fallback(font-size, 3.6);
+    font-size: 3.6px;
   }
 }
 
 h3 {
   font-family: $font-destacado;
-  @include rem-fallback(font-size, 2);
+  font-size: 20;
   font-weight: normal;
   margin-bottom: 0.666em;
   line-height: 1.2em;
@@ -89,14 +91,14 @@ h3 {
 }
 @media only screen and (min-width: 960px) {
   h3 {
-    @include rem-fallback(font-size, 2.4);
+    font-size:2.4;
     text-align: left;
   }
 }
 h4 {
   font-family: $font-destacado;
   color: $textNegative-color;
-  @include rem-fallback(font-size, 1.5);
+  font-size: 20px;
   border-bottom: 1px solid #e0e0e0;
   font-weight: normal;
 }
@@ -110,13 +112,13 @@ hr {
 
 p {
   font-family: $font-body;
-  @include rem-fallback(font-size, 1.6);
+  font-size: 16px;
   line-height: 1.5;
   color: $textBody-color;
   letter-spacing: 0.02em;
   margin-top: 0;
   text-align: left;
-  @include rem-fallback(margin-bottom, 2.5);
+  margin-bottom: 25px;
   &:last-child {
     margin-bottom: 0;
   }
@@ -124,7 +126,7 @@ p {
 
 li {
   font-family: $font-body;
-  @include rem-fallback(font-size, 1.6);
+  font-size: 16px;
   line-height: 1.5em;
   color: $textBody-color;
   margin-top: 0;
@@ -138,7 +140,7 @@ strong {
 
 a {
   font-family: $fontLink;
-  @include rem-fallback(font-size, 1.8);
+  font-size: 18px;
   line-height: 1.5em;
   color: $link-color;
   text-decoration: none;
@@ -157,7 +159,7 @@ a {
 }
 @media only screen and (min-width: 960px) {
   a {
-    @include rem-fallback(font-size, 2.5);
+    font-size:25px;
     line-height: 1.44em;
     text-align: left;
   }
@@ -181,11 +183,11 @@ figure {
   }
 }
 figcaption {
-  @include rem-fallback(font-size, 2);
+  font-size: 20px;
   line-height: 1.4em;
   text-align: center;
   width: auto;
-  @include rem-fallback(margin-bottom, 1.8);
+  margin-bottom: 18px;
 }
 
 img {
@@ -195,7 +197,7 @@ img {
 }
 
 blockquote {
-  @include rem-fallback(font-size, 3.2);
+  font-size: 32px;
   line-height: 1.25em;
   color: $textBody-color;
 }

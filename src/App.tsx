@@ -1,5 +1,7 @@
 import React from "react";
 import Home from "./pages/Home";
+import Layout from "./components/Layout";
+
 // import ItemFilm from "components/ItemFilm"
 import "./app.scss";
 
@@ -7,9 +9,7 @@ import "./app.scss";
 function App() {
   return (
     <>
-      <h1>FilmSearch</h1>
-      <Home/>
-       {/* <ItemFilm/> */}
+      <Layout content={<Home />} />
 
     </>)
 }
