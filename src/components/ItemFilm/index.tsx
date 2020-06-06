@@ -28,7 +28,7 @@ function ItemFilm({ film, addFav }: PropsItemFilms):JSX.Element {
         </p>
       </div>
       <footer className="item-film__footer">
-        <Button onClick={addFav} variant="primary">Añadir a tu lista <GrFavorite /></Button>
+        <Button onClick={addFav} variant="primary"><GrFavorite /></Button>
       </footer>
     </article>
   )

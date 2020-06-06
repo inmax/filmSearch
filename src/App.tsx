@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "./pages/Home";
 import Layout from "./components/Layout";
-
+import ContentTop from "./components/ContentTop";
 // import ItemFilm from "components/ItemFilm"
 import "./app.scss";
 
@@ -9,8 +9,10 @@ import "./app.scss";
 function App() {
   return (
     <>
-      <Layout content={<Home />} />
-
+      <Layout
+        header={<ContentTop />}
+        content={<Home />}
+      />
     </>)
 }
 export default App;

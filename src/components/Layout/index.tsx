@@ -1,29 +1,25 @@
-import React ,{ReactNode}from "react";
+import React, { ReactNode } from "react";
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import "./styles.scss";
 
 type Props = {
-  header?:string | JSX.Element;
+  header?: string | JSX.Element;
   content?: string | JSX.Element;
 }
 
-function Layout(props:Props):JSX.Element{
-  //header
-  //main
+function Layout(props: Props): JSX.Element {
   return (
     <div className="layout">
       <header className="header">
-        <h1>FilmSearch</h1>
-        {/* <Logo/>
-        <search/> */}
+        <Container fluid>
+          {props.header}
+        </Container>
       </header>
       <main className="layout__main-content">
-         <Container fluid>
-           {props.content}
-         </Container>
+        <Container fluid>
+          {props.content}
+        </Container>
       </main>
-    
     </div>
   )
 }
