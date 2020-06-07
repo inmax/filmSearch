@@ -20,23 +20,28 @@ const listFilmState = (
   action: { type: string; payload?: any }
 ) => {
   switch (action.type) {
-    case types.SEARCH_FILM: {
+   
+    case types.SENDING_REQUEST: {
       return {
         ...state,
-        s: action.payload.s,
-        page: action.payload.page,
-        error: action.payload.error,
         isLoaded: action.payload.isLoaded,
       };
     }
-    case types.STORE_ALL: {
+    case types.REQUEST_DATA: {
       return {
         ...state,
         list: action.payload.list,
+        isLoaded: action.payload.isLoaded,
+      };
+    }
+    case types.REQUEST_ERROR: {
+      return {
+        ...state,
         error: action.payload.error,
         isLoaded: action.payload.isLoaded,
       };
     }
+
     default:
       return state;
   }

@@ -3,41 +3,13 @@ import ListFilms from "./../../components/ListFilms";
 import Spinner from "react-bootstrap/Spinner";
 import { Film } from "./../../models/film";
 import { connect } from "react-redux";
-import axios from "axios";
-import { store_all } from './../../data/actions/filmsActions';
+import { fetchData} from './../../data/actions/filmsActions';
 import "./styles.scss";
 
-function Home({ list, s, page, isLoaded, error, store_all }: any): JSX.Element {
-  const api_key: string = process.env.OMDB_SECRET_KEY;
-  const url: string = `http://www.omdbapi.com/?apikey=${api_key}&s=${s}&type=movie&plot=short&page=${page}`;
-
-  const parseObj = (obj: any) => {
-    return Object.entries(obj).reduce((a: any, [key, value]) => {
-      a[key.toLowerCase()] = value;
-      return a;
-    }, {})
-  };
+function Home({ list, s, page, isLoaded, error,fetchData }: any): JSX.Element {
 
   useEffect(() => {
-    store_all({isLoaded:false});
-    axios
-      .get(
-        url
-      )
-      .then(
-        ({ data }) => {
-          const parseData = data.Search.map((film: {}) => {
-            return parseObj(film)
-          });
-          store_all({
-            list: [...parseData],
-            isLoaded:true
-          });
-        }
-      )
-      .catch((error) => {
-        store_all({isLoaded:true, error:error});
-      });
+      fetchData(s, page);
   }, [s,page]);
 
   if (error) {
@@ -49,7 +21,7 @@ function Home({ list, s, page, isLoaded, error, store_all }: any): JSX.Element {
         Cargando...
      </p>
     </>;
-  } else if (list.length === 0) {
+  } else if (!list || list.length === 0) {
     return <p>No se encontraron resultados</p>
   }
   else {
@@ -70,4 +42,4 @@ const mapStateToProps = (state: any, ownProps: any) => {
   };
 };
 
-export default connect(mapStateToProps, { store_all })(Home);
+export default connect(mapStateToProps, { fetchData })(Home);
