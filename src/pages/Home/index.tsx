@@ -11,7 +11,7 @@ function Home(): JSX.Element {
   const api_key = process.env.OMDB_SECRET_KEY;
   const PAGE="1";
   const SEARCH="*the*";
-  const url = `http://www.omdbapi.com/?apikey=${api_key}&s=${SEARCH}&type=movie&plot=short&page=${PAGE}`;
+  const url = `https://www.omdbapi.com/?apikey=${api_key}&s=${SEARCH}&type=movie&plot=short&page=${PAGE}`;
 
   const [items, setFilms] = useState([]);
   const [error, setError] = useState(null);
