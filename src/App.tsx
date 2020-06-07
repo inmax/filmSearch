@@ -1,16 +1,19 @@
 import React from "react";
 import Home from "./pages/Home";
-// import ItemFilm from "components/ItemFilm"
+import Layout from "./components/Layout";
+import ContentTop from "./components/ContentTop";
 import "./app.scss";
 
-// Written as a function declaration
+
 function App() {
+
+ 
   return (
     <>
-      <h1>FilmSearch</h1>
-      <Home/>
-       {/* <ItemFilm/> */}
-
+      <Layout
+        header={<ContentTop />}
+        content={<Home />}
+      />
     </>)
 }
 export default App;

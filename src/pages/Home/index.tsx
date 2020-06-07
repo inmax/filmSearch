@@ -1,39 +1,70 @@
-import React from "react";
-import ItemFilms from "./../../components/ItemFilm"
+import React, { useEffect, useState } from "react";
+import ListFilms from "./../../components/ListFilms";
 //import ItemFilms from "components/ItemFilm"
+import Spinner from  "react-bootstrap/Spinner";
+import { Film } from "./../../models/film";
+import { mockData } from "./mockdata"
+import axios from "axios";
 import "./styles.scss";
 
-const mockData = {
-  id: "tt0119177",
-  title: "Gattaca",
-  year: "1997",
-  director: "Andrew Niccol",
-  writer: "Andrew Niccol",
-  actors: "Ethan Hawke, Uma Thurman, Gore Vidal, Xander Berkeley",
-  plot: "In the not-too-distant future, a less-than-perfect man wants to travel to the stars. Society has categorized Vincent Freeman as less than suitable given his genetic make-up and he has become one of the.",
-  poster: "https://m.media-amazon.com/images/M/MV5BNDQxOTc0MzMtZmRlOS00OWQ5LWI2ZDctOTAwNmMwOTYxYzlhXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-  "Ratings": [
-    {
-      source: "Internet Movie Database",
-      value: "7.8/10"
-    },
-    {
-      source: "Rotten Tomatoes",
-      values: "81%"
-    },
-    {
-      source: "Metacritic",
-      value: "64/100"
-    }
-  ]
+function Home(): JSX.Element {
+  const api_key = process.env.OMDB_SECRET_KEY;
+  const PAGE="1";
+  const SEARCH="*the*";
+  const url = `http://www.omdbapi.com/?apikey=${api_key}&s=${SEARCH}&type=movie&plot=short&page=${PAGE}`;
 
+  const [items, setFilms] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
-}
-function Home() {
-  return (
-    <>
-      <ItemFilms film={mockData} addFav={()=>"ewewewe"}/>
-      <ItemFilms film={mockData} addFav={()=>"ewewewe"}/>
-    </>)
+  const parseObj = (obj:any) => {
+   return Object.entries(obj).reduce((a: any, [key, value]) => {
+      a[key.toLowerCase()] = value;
+      return a;
+    }, {})
+  };
+
+  useEffect(() => {
+    setIsLoaded(true);
+    axios
+        .get(
+          url
+        )
+        .then(
+          ({ data }) => {
+            const parseData = data.Search.map((film: {}) => {
+              return parseObj(film)
+            });
+            const newFilms = [...parseData, ...items];
+         
+            setFilms(newFilms);
+          }
+        )
+        .catch((error) => {
+          setIsLoaded(true);
+          setError(error);
+        });
+      
+    
+  }, []);
+
+  if (error) {
+    return <div><p>Error: {error.message}</p></div>;
+  } else if (!isLoaded) {
+    return <>
+      <Spinner animation="grow" variant="primary" />
+      <p>
+        Cargando...
+     </p> 
+    </>;
+  } else if(items.length===0){
+    return <p>No se encontraron resultados</p>
+  } 
+  else{
+    return (
+      <>
+        <ListFilms films={items} />
+      </>)
+  }
 }
 export default Home;

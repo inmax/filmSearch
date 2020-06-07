@@ -3,10 +3,17 @@
 .item-film{
     position: relative;
     display: block;
-    max-width: 460px;
+    // max-width: 300px;
     border: 1px solid black;
     padding:16px;
-    margin: 32px;
     background-color: $bg-color;
-    border-radius: 10px;
+    border-radius: 12px;
+    margin:16px auto;
+    &__excerpt{
+        max-height: 70px;
+        overflow: hidden;
+    }
+    &__footer{
+        margin-top:16px;
+    }
 }
