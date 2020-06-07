@@ -37354,7 +37354,7 @@ function Home() {
   var api_key = "f12ba140";
   var PAGE = "1";
   var SEARCH = "*the*";
-  var url = "http://www.omdbapi.com/?apikey=" + api_key + "&s=" + SEARCH + "&type=movie&plot=short&page=" + PAGE;
+  var url = "https://www.omdbapi.com/?apikey=" + api_key + "&s=" + SEARCH + "&type=movie&plot=short&page=" + PAGE;
 
   var _a = react_1.useState([]),
       items = _a[0],
