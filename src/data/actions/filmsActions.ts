@@ -43,7 +43,7 @@ export const request_error = (data: any): DispatchObject => ({
 export const getListFilms = (key: string, s: string, page: number): any => {
   return axios
     .get(
-      `http://www.omdbapi.com/?apikey=${key}&s=${s}&type=movie&plot=short&page=${page}`
+      `https://www.omdbapi.com/?apikey=${key}&s=${s}&type=movie&plot=short&page=${page}`
     )
     .then((res) => ({...res,s,page}))
     .catch((error) => error);
