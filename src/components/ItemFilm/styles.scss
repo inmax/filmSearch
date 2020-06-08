@@ -3,17 +3,30 @@
 .item-film{
     position: relative;
     display: block;
-    // max-width: 300px;
     border: 1px solid black;
-    padding:16px;
+    padding:8px;
     background-color: $bg-color;
     border-radius: 12px;
     margin:16px auto;
+    cursor: pointer;
+    &__title{
+        text-overflow:ellipsis;
+        overflow:hidden;
+        white-space: nowrap;
+    }
     &__excerpt{
         max-height: 70px;
         overflow: hidden;
     }
     &__footer{
         margin-top:16px;
+ 
+    }
+    &__adding-fav{
+        color:#fff;
+
+    }
+    @media #{$desktop} {
+        padding:16px; 
     }
 }

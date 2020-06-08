@@ -1,14 +1,11 @@
 @import "./../../theme/vars";
 
 .list-films{
-    padding:16px;
+   display:block;
     
-    // @media #{$tabletLandscape} {
-    //     padding:32px; 
-    // }
-    // @media #{$desktop} {
-    //     padding:64px; 
-    // }
+    @media #{$desktop} {
+        margin-top:64px; 
+    }
     // @media #{$desktop2K} {
     //     padding:112px; 
     // }

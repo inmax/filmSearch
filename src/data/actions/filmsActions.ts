@@ -18,11 +18,13 @@ export const request_data = (data: any): DispatchObject => {
   const newList = get(data,"data.Search",[]).map((film:object) => {
     return  toLowerCaseKeyObj(film)
   });
+  
   return {
     type: types.REQUEST_DATA,
     payload: {
       list: newList,
       isLoaded: true,
+      totalResults: get(data,"data.totalResults",undefined),
     },
   };
 };

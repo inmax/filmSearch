@@ -9,19 +9,19 @@ import "./styles.scss";
 
 function ContentTop(): JSX.Element {
   return (
-    <Row>
+    <Row className="align-middle">
       <Col xs={12} lg={"auto"}>
         <h1 className="logo">FilmSearch</h1>
       </Col >
 
       <Col xs={12} lg={6}>
-        <Form>
-          <Row className="align-middle">
-            <Col>
-              <Form.Control type="text" placeholder="Search" size="lg" />
+        <Form className="content-top__form">
+          <Row className="align-middle" noGutters={true}>
+            <Col xs={8}>
+              <Form.Control size="lg" type="text" placeholder="Buscar película"  />
             </Col>
-            <Col>
-              <Button variant="outline-success">Search</Button>
+            <Col xs={4}>
+              <Button size="lg">Buscar</Button>
               </Col >
             </Row>
         </Form>

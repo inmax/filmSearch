@@ -6,13 +6,15 @@ interface StateList {
   list?: any[];
   error?: object | null;
   isLoaded?: boolean;
+  totalResults:undefined|number
 }
 const initState: StateList = {
   s: "*the*",
-  page: 4,
+  page: 1,
   list: [],
   error: null,
   isLoaded: false,
+  totalResults:undefined
 };
 
 const listFilmState = (
@@ -20,7 +22,6 @@ const listFilmState = (
   action: { type: string; payload?: any }
 ) => {
   switch (action.type) {
-   
     case types.SENDING_REQUEST: {
       return {
         ...state,
@@ -30,8 +31,9 @@ const listFilmState = (
     case types.REQUEST_DATA: {
       return {
         ...state,
-        list: action.payload.list,
+        list: [...state.list,...action.payload.list],
         isLoaded: action.payload.isLoaded,
+        totalResults:action.payload.totalResults
       };
     }
     case types.REQUEST_ERROR: {
@@ -41,7 +43,6 @@ const listFilmState = (
         isLoaded: action.payload.isLoaded,
       };
     }
-
     default:
       return state;
   }
