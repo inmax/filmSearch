@@ -44039,7 +44039,7 @@ exports.request_error = function (data) {
 };
 
 exports.getListFilms = function (key, s, page) {
-  return axios_1.default.get("http://www.omdbapi.com/?apikey=" + key + "&s=" + s + "&type=movie&plot=short&page=" + page).then(function (res) {
+  return axios_1.default.get("https://www.omdbapi.com/?apikey=" + key + "&s=" + s + "&type=movie&plot=short&page=" + page).then(function (res) {
     return __assign(__assign({}, res), {
       s: s,
       page: page
