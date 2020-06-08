@@ -1,21 +1,22 @@
 @import "./../../theme/vars";
 
-.layout{
-    padding:16px;
+.logo{
+    padding: 16px 0;
+    margin:32px;
+    text-align: center;
     @media #{$tabletLandscape} {
-        padding:32px; 
-    }
-    @media #{$desktop} {
-        padding:64px; 
-    }
-    @media #{$desktop2K} {
-        padding:112px; 
-    }
-    &__main-content{
-        display: block;
-        min-height:80vh;
+        margin:0;
     }
 }
-.logo{
-    padding: 0 16px;
+.align-middle{
+ align-items: center;
+}
+.content-top__form{
+    margin-bottom: 24px;
+    @media #{$tabletLandscape} {
+        margin:0;
+    }
+    @media #{$desktop} {
+        margin-left: 100px;
+    }
 }

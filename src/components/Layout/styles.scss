@@ -1,7 +1,7 @@
 @import "./../../theme/vars";
 
 .layout{
-    padding:16px;
+    padding:0px;
     @media #{$tabletLandscape} {
         padding:32px; 
     }

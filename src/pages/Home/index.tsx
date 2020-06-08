@@ -1,70 +1,65 @@
 import React, { useEffect, useState } from "react";
 import ListFilms from "./../../components/ListFilms";
-//import ItemFilms from "components/ItemFilm"
-import Spinner from  "react-bootstrap/Spinner";
+import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
 import { Film } from "./../../models/film";
-import { mockData } from "./mockdata"
-import axios from "axios";
+import { connect } from "react-redux";
+import { fetchData } from './../../data/actions/filmsActions';
+import InfiniteScroll from "react-infinite-scroller";
 import "./styles.scss";
 
-function Home(): JSX.Element {
-  const api_key = process.env.OMDB_SECRET_KEY;
-  const PAGE="1";
-  const SEARCH="*the*";
-  const url = `https://www.omdbapi.com/?apikey=${api_key}&s=${SEARCH}&type=movie&plot=short&page=${PAGE}`;
-
-  const [items, setFilms] = useState([]);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  const parseObj = (obj:any) => {
-   return Object.entries(obj).reduce((a: any, [key, value]) => {
-      a[key.toLowerCase()] = value;
-      return a;
-    }, {})
-  };
+function Home({ list, s, page, isLoaded, error, fetchData, totalResults }: any): JSX.Element {
 
   useEffect(() => {
-    setIsLoaded(true);
-    axios
-        .get(
-          url
-        )
-        .then(
-          ({ data }) => {
-            const parseData = data.Search.map((film: {}) => {
-              return parseObj(film)
-            });
-            const newFilms = [...parseData, ...items];
-         
-            setFilms(newFilms);
-          }
-        )
-        .catch((error) => {
-          setIsLoaded(true);
-          setError(error);
-        });
-      
-    
-  }, []);
+    fetchData(s, page);
+  }, [s, page]);
 
+  
   if (error) {
     return <div><p>Error: {error.message}</p></div>;
-  } else if (!isLoaded) {
-    return <>
-      <Spinner animation="grow" variant="primary" />
-      <p>
-        Cargando...
-     </p> 
-    </>;
-  } else if(items.length===0){
+
+  } else if (!list || list.length === 0) {
     return <p>No se encontraron resultados</p>
-  } 
-  else{
+  }
+  else {
     return (
       <>
-        <ListFilms films={items} />
+        {/* <InfiniteScroll
+          pageStart={0}
+          loadMore={handleLoadMore}
+          hasMore={false}
+          loader={
+            <div key={1}>
+              <Spinner animation="grow" variant="primary" />
+              <p>
+                Cargando...
+           </p>
+            </div>
+          }
+        > */}
+        {!isLoaded && (<div key={1}>
+          <Spinner animation="grow" variant="primary" />
+          <p>
+            Cargando...
+            </p>
+        </div>)}
+
+        <ListFilms films={list} key={2} />
+        {/* </InfiniteScroll> */}
+
       </>)
   }
 }
-export default Home;
+
+const mapStateToProps = (state: any, ownProps: any) => {
+  return {
+    s: state.listFilmState.s,
+    page: state.listFilmState.page,
+    list: state.listFilmState.list,
+    isLoaded: state.listFilmState.isLoaded,
+    error: state.listFilmState.error,
+    totalResults: state.listFilmState.totalResults
+  };
+};
+
+export default connect(mapStateToProps, { fetchData })(Home);
