@@ -14,7 +14,7 @@ export const sending_request = (): DispatchObject => ({
   },
 });
 
-export const request_data = (data: any): DispatchObject => {
+export const request_data = (data: any,): DispatchObject => {
   const newList = get(data,"data.Search",[]).map((film:object) => {
     return  toLowerCaseKeyObj(film)
   });
@@ -25,6 +25,8 @@ export const request_data = (data: any): DispatchObject => {
       list: newList,
       isLoaded: true,
       totalResults: get(data,"data.totalResults",undefined),
+      s:data.s,
+      page:data.page
     },
   };
 };
@@ -43,11 +45,11 @@ export const getListFilms = (key: string, s: string, page: number): any => {
     .get(
       `http://www.omdbapi.com/?apikey=${key}&s=${s}&type=movie&plot=short&page=${page}`
     )
-    .then((res) => res)
+    .then((res) => ({...res,s,page}))
     .catch((error) => error);
 };
 
-export const fetchData = (s:string,page:number) => (dispatch: any) => {
+export const fetchData = (s:string,page:number=1) => (dispatch: any) => {
   dispatch(sending_request());
   return getListFilms(api_key,s,page)
     .then((data: any) => {dispatch(request_data(data))})

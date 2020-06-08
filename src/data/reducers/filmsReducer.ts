@@ -31,9 +31,11 @@ const listFilmState = (
     case types.REQUEST_DATA: {
       return {
         ...state,
-        list: [...state.list,...action.payload.list],
+        list: action.payload.list,
         isLoaded: action.payload.isLoaded,
-        totalResults:action.payload.totalResults
+        totalResults:action.payload.totalResults,
+        s:action.payload.s,
+        page:action.payload.page
       };
     }
     case types.REQUEST_ERROR: {
