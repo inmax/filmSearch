@@ -4,15 +4,17 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Dotenv = require('dotenv-webpack');
 
 module.exports = () => {
- 
-
   return {
     entry: "./src/index.tsx",
     target: "web",
     mode: "development",
     output: {
+      publicPath:'/',
       path: path.resolve("//" + __dirname, "build"),
       filename: "bundle.js",
+    },
+    devServer:{
+      historyApiFallback: true
     },
     resolve: {
       extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
@@ -24,6 +26,12 @@ module.exports = () => {
         { test: /\.css$/, use: ["style-loader", "css-loader", "sass-loader"] },
         { test: /\.tsx?$/, loader: "babel-loader" },
         { test: /\.tsx?$/, loader: "ts-loader" },
+        {
+          enforce: "pre",
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: "eslint-loader",
+        },
         { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       ],
     },

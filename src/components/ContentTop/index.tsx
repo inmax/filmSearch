@@ -8,9 +8,9 @@ import Button from "react-bootstrap/Button";
 import "./styles.scss";
 
 
-function ContentTop({fetchData}:any): JSX.Element {
+function ContentTop({ fetchData }: any): JSX.Element {
   const [search, setSearch] = useState('');
-  const onKeyPress = (e:any):void => {
+  const onKeyPress = (e: any): void => {
     if (e.key === "Enter") {
       e.preventDefault();
       fetchData(search, 1);
@@ -27,7 +27,7 @@ function ContentTop({fetchData}:any): JSX.Element {
         <Form className="content-top__form">
           <Row className="align-middle" noGutters={true}>
             <Col xs={8}>
-              <Form.Control size="lg" type="text" value={search} placeholder="Buscar película" onChange={(e) => { setSearch(e.target.value) }} onKeyPress={onKeyPress}/>
+              <Form.Control size="lg" type="text" value={search} placeholder="Buscar película" onChange={(e) => { setSearch(e.target.value) }} onKeyPress={onKeyPress} />
             </Col>
             <Col xs={4}>
               <Button size="lg"
